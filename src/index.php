@@ -1,53 +1,35 @@
-<?php
-$input=$_POST['input'];
-$changeTime= $_POST['time'];
-$result;
 
-if(isset($_POST['convert'])){
-print_r($_POST);
-    if($changeTime=="hours_to_min"){
-$result=60*$input." min";
+<?php 
+if(isset($_FILES['images'])){
+    echo '<pre>';
+    print_r($_FILES);
+    echo '</pre>';
 }
+$file_name=$_FILES['images']['name'];
+$file_size=$_FILES['images']['size'];
+$file_tmp=$_FILES['images']['tmp_name'];
+$file_type=$_FILES['images']['type'];
 
-elseif($changeTime=="hours_to_sec"){
-$result= (60*60)*$input." seconds";
-}
+move_uploaded_file($file_tmp,"uploads/".$file_name);
 
-}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+    <form action="" method="POST" enctype="multipart/form-data">
+        <input type="file" name="images" /><br><br>
+        <input type="submit"/>
+    </form>
 
 
-<input type="text" name="input"><br><br>
-
-<input type="radio" id="" name="time" value="hours_to_min">
-<label for="">hours to min</label><br>
-
-<input type="radio" id="" name="time" value="hours_to_sec">
-<label for="">hours to sec</label><br>
-
-<input type="submit" name="convert" value="convert">
-
-
-<p>
-    <?php
-    echo $result;
-    ?>
-</p>
-
-</form>
-
-  
 </body>
+
 </html>
