@@ -1,51 +1,43 @@
 <?php
-$first_num = $_POST['first_num'];
-$second_num = $_POST['second_num'];
-$operator = $_POST['operator'];
-$result = '';
-if (is_numeric($first_num) && is_numeric($second_num)) {
-    switch ($operator) {
-        case "Add":
-           $result = $first_num + $second_num;
-            break;
-        case "Subtract":
-           $result = $first_num - $second_num;
-            break;
-        case "Multiply":
-            $result = $first_num * $second_num;
-            break;
-        case "Divide":
-            $result = $first_num / $second_num;
-    }
+$area=0;
+$perimeter=0;
+$len="";
+$wid="";
+if(isset($_POST["calcBtn"]))
+{
+    $len= $_POST["len"];
+    $wid= $_POST["wid"];
+    
+    //area 
+    $area=$len*$wid;
+ 
+    //perimeter 
+    $perimeter=2*($len+$wid);
 }
+ 
 
 ?>
 
 <!DOCTYPE html>
 
 <head>
-    <title> Calculator Program</title>
+    <title> Cal. Area And Peri.</title>
 </head>
 
 
 <body>
 <div id="page-wrap">
-	<h1> Calculator Program</h1>
-	  <form action="" method="post" id="quiz-form">
-            <p>
-                <input type="number" name="first_num" id="first_num" required="required" value="<?php echo $first_num; ?>" /> <b>Number 1</b>
-            </p>
-            <p>
-                <input type="number" name="second_num" id="second_num" required="required" value="<?php echo $second_num; ?>" /> <b>Number 2</b>
-            </p>
-            <p>
-                <input readonly="readonly" name="result" value="<?php echo $result; ?>"> <b>Result</b>
-            </p>
-            <input type="submit" name="operator" value="Add" />
-            <input type="submit" name="operator" value="Subtract" />
-            <input type="submit" name="operator" value="Multiply" />
-            <input type="submit" name="operator" value="Divide" />
-	  </form>
+        <form action="" method="post">
+            <label for="len">Length:
+                <input type="text" name="len" value="<?=$len?>"><br><br>
+            </label>
+            <label for="wid">Width:
+                <input type="text" name="wid" value="<?=$wid?>"><br><br>
+            </label>
+            <button name="calcBtn" type="submit">Calculate Area and Perimeter</button>
+        </form> 
+        <h2>Area: <?=$area?></h2>
+        <h2>Perimeter:<?=$perimeter?></h2>
     </div>
 </body>
 
